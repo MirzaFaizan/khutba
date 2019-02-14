@@ -1,0 +1,1 @@
+export const notiServerKey='key=AAAAyO3Hppc:APA91bHWciKGK6AewtoUjymQHi3Zvr1ytts3ASRraygfrdOcX6b_J4jShYwl7U5ZkY8tOHAqFxky98c37ZFcE92YSGgLT8x7G-JwJc7Qz8twAEaCImntCkueu8_7yBF-lNjEAgAVG7XF'

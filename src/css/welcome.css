@@ -1,0 +1,23 @@
+ 
+.card
+  {
+   
+  display: block;
+  
+  }
+
+  .header { 
+   background-color: rgb(16, 99, 16);
+  color: white;
+  text-align: center;
+  height: 40px;
+  padding: 7px;
+}
+.i
+{
+   font-size:60px;
+}
+.card-body
+{
+    height: 300px;
+}
