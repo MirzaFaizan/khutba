@@ -25,31 +25,52 @@ class App extends Component {
   authListener() {
     fire.auth().onAuthStateChanged((user) => {
       console.log(user)
+      fire.database().ref('users').on('value', snapshot => {
+        const usersObject = snapshot.val();
+        console.log(usersObject)
+        const usersList = Object.keys(usersObject).map(key => ({
+          ...usersObject[key],
+          uid: key,
+        }));
 
-      if (user) {
-        this.setState({ user });
-        //  localStorage.setItem('user', user.uid)
-      }
-      else {
-        this.setState({ user: null });
-        //  localStorage.removeItem('user')
+        console.log(usersList)
+        if (user) {
+          usersList.forEach(key => {
+            if (key.email == user.email) {
+              this.setState({ user: key });
+            }
+          });
+          //  localStorage.setItem('user', user.uid)
+        }
+        else {
+          this.setState({ user: null });
+          //  localStorage.removeItem('user')
 
-      }
+        }
+
+      });
+
     });
   }
   render() {
+    console.log(this.state)
     return (
       // <div className="App">
       <Switch>
         {this.state.user ?
-          <Route exact path="/welcome" component={Welcome} />
+          <Route exact path="/welcome"
+            render={routeProps => <Welcome {...routeProps} user={this.state.user} />}
+          />
           : <Route exact path="/welcome" component={Login} />}
+
         {this.state.user ?
           <Route exact path="/login" component={Welcome} />
           : <Route exact path="/login" component={Login} />}
+
         {this.state.user ?
           <Route exact path="/signup" component={Welcome} />
           : <Route exact path="/signup" component={Signup} />}
+
         {this.state.user ?
           <Route exact path="/" component={Welcome} />
           :

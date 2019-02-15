@@ -28,21 +28,21 @@ class Signup extends Component {
     }
 
     handleChange(e) {
-      //  console.log(e.target)
+        //  console.log(e.target)
         let name = e.target.name
         this.setState({ [e.target.name]: e.target.value }
             ,
             () => {
                 if (name === 'email') {
                     if (/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/.test(this.state.email)) {
-                     //   console.log(this.state.email)
+                        //   console.log(this.state.email)
                         this.setState({ emailvalid: true, emailvalidationMessage: "" })
                     } else {
                         this.setState({ emailvalidationMessage: "Please Enter valid Email", emailvalid: false })
                     }
                 } else if (name === 'password') {
                     if (this.state.password !== "") {
-                      //  console.log(this.state.email)
+                        //  console.log(this.state.email)
                         this.setState({ passwordvalid: true, passwordvalidationMessage: "" })
                     } else {
                         this.setState({ passwordvalidationMessage: "Please Enter Password ", passwordvalid: false })
@@ -53,27 +53,51 @@ class Signup extends Component {
 
 
     }
-    signup(e) {
-      //  console.log(this.state)
-       
-        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
-        }).then((u) => {
-         //   console.log(u)
-            this.props.history.push("/welcome")
-        })
-            .catch((error) => {
-             //   console.log(error)
-                if (error.code === "auth/email-already-in-use");
-                {
-                    this.setState({
-                        signupError: "Email already In Use"
-                    })
-                }
+    users = () => fire.database().ref('users');
 
-            })
+    signup(e) {
+        //  console.log(this.state)
+
+
+        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
+      
+            let email = this.state.email
+            let role = "Student"
+            let username = this.state.fname + this.state.lname
+     
+            this.users(u.user.uid)
+                .push({
+                    username,
+                    email,
+                    role
+                })
+                .then((res) => {
+                    console.log(res)
+
+                    // this.setState({ ...INITIAL_STATE });
+                    // this.props.history.push(ROUTES.HOME);
+                })
+                .catch(error => {
+                    console.log(error)
+                    //     this.setState({ error });
+                });
+        }).catch((error) => {
+            console.log(error)
+            if (error.code == "auth/email-already-in-use") {
+                this.setState({
+                    signupError: "Email already In Use"
+                })
+            }
+            else {
+                this.setState({
+                    signupError: "Something went wrong"
+                })
+            }
+
+        })
     }
     render() {
-     //   console.log(this.state)
+        //   console.log(this.state)
         return (
             <div className="signup-form">
                 <form >
