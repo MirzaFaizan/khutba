@@ -28,7 +28,7 @@ class Signup extends Component {
     }
 
     handleChange(e) {
-      //  console.log(e.target)
+        //  console.log(e.target)
         let name = e.target.name
         this.setState({ [e.target.name]: e.target.value }
             ,
@@ -42,7 +42,7 @@ class Signup extends Component {
                     }
                 } else if (name === 'password') {
                     if (this.state.password !== "") {
-                      //  console.log(this.state.email)
+                        //  console.log(this.state.email)
                         this.setState({ passwordvalid: true, passwordvalidationMessage: "" })
                     } else {
                         this.setState({ passwordvalidationMessage: "Please Enter Password ", passwordvalid: false })
@@ -53,9 +53,12 @@ class Signup extends Component {
 
 
     }
+    users = () => fire.database().ref('users');
+
     signup(e) {
-      //  console.log(this.state)
-       
+        //  console.log(this.state)
+
+
         fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
         }).then((u) => {
          //   console.log(u)
@@ -70,10 +73,10 @@ class Signup extends Component {
                     })
                 }
 
-            })
+        })
     }
     render() {
-     //   console.log(this.state)
+        //   console.log(this.state)
         return (
             <div className="signup-form">
                 <form >

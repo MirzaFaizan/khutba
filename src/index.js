@@ -28,11 +28,9 @@ if ('serviceWorker' in navigator) {
       console.log('Service worker registration failed, error:', err);
     });
 }
-//   
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
+
 //serviceWorker.unregister();
+<<<<<<< HEAD
 // const config = {
 //   apiKey: "AIzaSyA94oWHLyo8QGb4QN5TbAuUGi2LqVa3rRE",
 //   authDomain: "onlineacademy-a3663.firebaseapp.com",
@@ -53,27 +51,11 @@ const messaging = firebase.messaging();
 //   console.log(token)
 //   // localStorage.fcmtoken=token
 // localStorage.setItem('fcmtoken', token);
+=======
+>>>>>>> 39b9c06e10c17886b5292d48663964b33f7fd30f
 
-// }).catch(function (err) {
-//   console.log('Unable to get permission to notify.', err);
-// });
+const messaging = firebase.messaging();
 
-// messaging.getToken().then(function(currentToken) {
-//   if (currentToken) {
-//     sendTokenToServer(currentToken);
-//     updateUIForPushEnabled(currentToken);
-//   } else {
-//     // Show permission request.
-//     console.log('No Instance ID token available. Request permission to generate one.');
-//     // Show permission UI.
-//     updateUIForPushPermissionRequired();
-//     setTokenSentToServer(false);
-//   }
-// }).catch(function(err) {
-//   console.log('An error occurred while retrieving token. ', err);
-//   showToken('Error retrieving Instance ID token. ', err);
-//   setTokenSentToServer(false);
-// });
 
 
 messaging.onMessage(function (payload) {
@@ -85,7 +67,7 @@ messaging.onMessage(function (payload) {
   };
 
   if (!("Notification" in window)) {
-    console.log("This browser does not support system notifications");
+    alert("This browser does not support system notifications");
   }
   // Let's check whether notification permissions have already been granted
   else if (Notification.permission === "granted") {
