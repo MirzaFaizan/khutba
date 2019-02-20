@@ -5,9 +5,13 @@ import './index.css';
 import App from './App';
 // import * as serviceWorker from './serviceWorker';
 import firebase from 'firebase';
+
+
 import { BrowserRouter as Router } from "react-router-dom";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 
 ReactDOM.render(
   <Router>
@@ -39,6 +43,7 @@ if ('serviceWorker' in navigator) {
 // };
 // const fire = firebase.initializeApp(config);
 const messaging = firebase.messaging();
+
 // messaging.requestPermission().then(function () {
 //   console.log('Notification permission granted.');
 //   // TODO(developer): Retrieve an Instance ID token for use with FCM.

@@ -3,12 +3,15 @@ import './App.css';
 import fire from './config/fire';
 import Login from './modules/Login'
 import Signup from './modules/signup'
+import Start from './modules/start';
 // import Start from './modules/start'
 import Welcome from './modules/welcome'
 //import { Router, Route } from "react-router"
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import {Route, Switch } from 'react-router-dom';
+// import {BrowserRouter} from 'react-router-dom';
 
 //import Home from './modules/Home'
+
 
 class App extends Component {
   constructor(props) {
@@ -24,7 +27,7 @@ class App extends Component {
 
   authListener() {
     fire.auth().onAuthStateChanged((user) => {
-      console.log(user)
+    
 
       if (user) {
         this.setState({ user });
@@ -40,6 +43,7 @@ class App extends Component {
   render() {
     return (
       // <div className="App">
+      
       <Switch>
         {this.state.user ?
           <Route exact path="/welcome" component={Welcome} />
@@ -55,6 +59,10 @@ class App extends Component {
           :
           <Route exact path="/" component={Login} />
 
+        }
+        {
+          this.state.user!= null  && this.state.user.uid === '9EDyWWsBzEgToEbFu2ug0NVcidp2' ? <Route exact path='/home' component={Welcome}/>
+          : <Route exact path = '/home' component={Start}/>
         }
       </Switch>
       // <BrowserRouter >

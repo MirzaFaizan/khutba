@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../css/login.css';
 import fire from '../config/fire';
+// import { askForPermissioToReceiveNotifications } from '../push-notification';
 
 class Login extends Component {
     constructor(props) {
@@ -26,7 +27,7 @@ class Login extends Component {
             ,
             () => {
                 if (name === 'email') {
-                    if (/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/.test(this.state.email)) {
+                    if (/^([a-zA-Z0-9_]+)@((\[[0-9]{1,3}[0-9]{1,3}[0-9]{1,3})|(([a-zA-Z0-9]+)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/.test(this.state.email)) {
                        // console.log(this.state.email)
                         this.setState({ emailvalid: true })
                     } else {
@@ -50,7 +51,8 @@ class Login extends Component {
      //   console.log(e)
         e.preventDefault();
         fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
-            this.props.history.push("/welcome")
+            // console.log(u)
+            this.props.history.push("/home")
 
         }).catch((error) => {
        //     console.log(error);
@@ -69,6 +71,9 @@ class Login extends Component {
        // console.log(this.state)
         return (  
             <div className="signup-form">
+            {/* <button onClick={askForPermissioToReceiveNotifications} >
+            Clique aqui para receber notificações
+            </button> */}
                 <form >
                     <h1><b>Login </b></h1>
                     <div className="form-group ">
@@ -90,12 +95,12 @@ class Login extends Component {
                     <br />
     
                     <h4 className="text-center ">Don't have an account ?<a href="/signup"  >Sign Up</a></h4>
-                    <p className="text-divider"><span>OR</span></p>
-            <a href="" className="btn btn-block btn-facebook">
+                    {/* <p className="text-divider"><span>OR</span></p>
+            <button  className="btn btn-block btn-facebook">
                         <i className="fab fa-facebook-f " style={{ fontSize: '22px', backgroundColor: '#3372d1', color: 'white', paddingTop: '1%', paddingBottom: '4%' }}>
-                            <button type="button" className="btn btn-info" style={{ backgroundColor: '#3372d1' }}>Connect with facebook</button></i></a>
-                    <a href="" className="btn btn-block btn-google  "> <i className='fab fa-google-plus ' style={{ fontSize: '19px', paddingTop: '1%', paddingBottom: '4%', backgroundColor: 'rgb(185, 67, 67)', color: 'white' }}>
-                        <button type="button" className="btn btn-danger " style={{ backgroundColor: 'rgb(185, 67, 67)' }}>Connect with Google</button></i></a>
+                            <button type="button" className="btn btn-info" style={{ backgroundColor: '#3372d1' }}>Connect with facebook</button></i></button>
+                    <button  className="btn btn-block btn-google  "> <i className='fab fa-google-plus ' style={{ fontSize: '19px', paddingTop: '1%', paddingBottom: '4%', backgroundColor: 'rgb(185, 67, 67)', color: 'white' }}>
+                        <button type="button" className="btn btn-danger " style={{ backgroundColor: 'rgb(185, 67, 67)' }}>Connect with Google</button></i></button> */}
                     <div className="form-group">
                         <button type="submit" onClick={this.login} className="btn btn-primary btn-block btn-lg">Log In</button>
                     </div>

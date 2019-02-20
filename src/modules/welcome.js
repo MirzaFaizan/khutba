@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../css/welcome.css';
 import fire from '../config/fire';
-import { notiServerKey } from '../config/constants';
+// import { notiServerKey } from '../config/constants';
 
 import YouTube from 'react-youtube';
 import axios from 'axios';
@@ -18,16 +18,25 @@ class Welcome extends Component {
 
     };
   }
+  
   handleChange = (e) => {
     this.setState({
       playing: !this.state.playing
     }, () => {
+      var StreamRef = fire.database().ref();
       if (this.state.playing) {
-        this.sendNotification()
+        this.sendNotification();
+       
+        StreamRef.child('stream').set(true);
+      }
+      if(this.state.playing===false){
+      
+        StreamRef.child('stream').set(false);
       }
     })
   }
   sendNotification = () => {
+    
     const fcmtoken = localStorage.getItem('fcmtoken');
     let notificationData = {
       to: fcmtoken,
@@ -41,7 +50,7 @@ class Welcome extends Component {
       method: 'post',
       url: "https://fcm.googleapis.com/fcm/send",
       headers: {
-        Authorization: notiServerKey,
+        Authorization: 'AAAA3cvFfaQ:APA91bH-weVdsidMMqiMg1KXKiR6R3NAMRUJ_w0ym1abbEJiqyFmTYF9OqrWc7fOmGPivo0jHwi4aIgk96LRot1MPa85oBZYlI9aYoBjPaLiFyJ96tjP39xAH0Hg7eegiQ4lxaUDfEhD',
         'Content-Type': 'application/json'
       },
       data: JSON.stringify(notificationData),
@@ -50,14 +59,15 @@ class Welcome extends Component {
     }).catch(err => {
       //console.log(err)
     });
-
-
+    console.log('sending notifications')
   }
 
   signout() {
     fire.auth()
       .signOut()
       .then(() => {
+        var StreamRef = fire.database().ref();
+        StreamRef.child('stream').set(false);
         this.props.history.push("/login")
 
         // dispatch({ type: types.RESET_PHONEVERIFY_FLAG })
@@ -77,7 +87,9 @@ class Welcome extends Component {
         autoplay: 1
       }
     };
-    console.log(this.state)
+    // console.log(this.state)
+
+   
 
     return (
       <div className="container">

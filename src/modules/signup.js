@@ -34,7 +34,7 @@ class Signup extends Component {
             ,
             () => {
                 if (name === 'email') {
-                    if (/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/.test(this.state.email)) {
+                    if (/^([a-zA-Z0-9_]+)@((\[[0-9]{1,3}[0-9]{1,3}[0-9]{1,3})|(([a-zA-Z0-9]+)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/.test(this.state.email)) {
                      //   console.log(this.state.email)
                         this.setState({ emailvalid: true, emailvalidationMessage: "" })
                     } else {
@@ -63,7 +63,7 @@ class Signup extends Component {
         })
             .catch((error) => {
              //   console.log(error)
-                if (error.code === "auth/email-already-in-use");
+                if (error.code === "auth/email-already-in-use")
                 {
                     this.setState({
                         signupError: "Email already In Use"
@@ -130,15 +130,15 @@ class Signup extends Component {
                     </div>
                     <br />
 
-                    <p className="text-divider"><span>OR</span></p>
+                    {/* <p className="text-divider"><span>OR</span></p>
 
-                    <a href="" className="btn btn-block btn-facebook">
+                    <a href="facebook.com" className="btn btn-block btn-facebook">
                         <i className="fab fa-facebook-f " style={{ fontSize: '22px', backgroundColor: '#3372d1', color: 'white', paddingTop: '1%', paddingBottom: '4%' }}>
                             <button type="button" className="btn btn-info" style={{ backgroundColor: '#3372d1' }}>Connect with facebook</button></i></a>
 
 
-                    <a href="" className="btn btn-block btn-google  "> <i className='fab fa-google-plus ' style={{ fontSize: '19px', paddingTop: '1%', paddingBottom: '4%', backgroundColor: 'rgb(185, 67, 67)', color: 'white' }}>
-                        <button type="button" className="btn btn-danger " style={{ backgroundColor: 'rgb(185, 67, 67)' }}>Connect with Google</button></i></a>
+                    <a href="google.com" className="btn btn-block btn-google  "> <i className='fab fa-google-plus ' style={{ fontSize: '19px', paddingTop: '1%', paddingBottom: '4%', backgroundColor: 'rgb(185, 67, 67)', color: 'white' }}>
+                        <button type="button" className="btn btn-danger " style={{ backgroundColor: 'rgb(185, 67, 67)' }}>Connect with Google</button></i></a> */}
 
 
 

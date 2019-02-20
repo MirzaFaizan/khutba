@@ -14,30 +14,36 @@ class Start extends Component {
 
    constructor(props){
        super(props)
-       
-       this.state={
-           streaming: false
-       }
-     
+        this.state = {
+            streaming:false
+        }
+       console.log(this.props.streaming)
    }
 
-    componentWillMount()
-    {
-        askForPermissioToReceiveNotifications()
-        
-        var self = this;
-        var ref = fire.database().ref();
-        ref.once('value')
-        .then(function (snap) {
-            if(snap.val().stream === true)
-            {
-                console.log('we are here')
-                self.setState({
-                    streaming: true
-                })
-           }
-        });
-    }    
+           
+   signout = () => {
+    fire.auth()
+      .signOut()
+      .then(() => {
+        this.props.history.push("/login")
+
+        // dispatch({ type: types.RESET_PHONEVERIFY_FLAG })
+      })
+      .catch(err => console.log("sign out failure"));
+  }
+
+   settingofState = () => {
+    console.log('setting of state')
+    var ref = fire.database().ref();
+    ref.once('value')
+    .then(function (snap) {
+        if(snap.val()===true){
+            this.setState({
+                streaming:true
+            })
+        }
+    });
+    }
 
     onDisplay = () => {
         const opts = {
@@ -47,10 +53,8 @@ class Start extends Component {
               autoplay: 1
             }
           };
-          console.log('here',this.state.streaming)
+      this.settingofState()
         if(this.state.streaming === true) {
-           
-          
           return (
             <div className="container">
 
@@ -89,8 +93,7 @@ class Start extends Component {
                         <i className="fa fa-power-off i " aria-hidden="true"></i> <br />
                         <p className="pb-5"> HELLLOOO </p>  </div> */}
                     <div className="card-body">
-                   <h1 style={{textAlign:'center'}}>Stream Not Available</h1>
-                   <h2 style={{textAlign:'center'}}>Refresh</h2>
+                   <h1>Refresh Page</h1>
                     </div>
                 
 {/* 
@@ -100,17 +103,7 @@ class Start extends Component {
             )  
         }
         }
-        
-    signout() {
-        fire.auth()
-          .signOut()
-          .then(() => {
-            this.props.history.push("/login")
-    
-            // dispatch({ type: types.RESET_PHONEVERIFY_FLAG })
-          })
-          .catch(err => console.log("sign out failure"));
-      }
+
     render() {
         
         return (

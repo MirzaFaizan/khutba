@@ -1,13 +1,15 @@
 import firebase from 'firebase';
 
-const config = {
-  apiKey: "AIzaSyA94oWHLyo8QGb4QN5TbAuUGi2LqVa3rRE",
-  authDomain: "onlineacademy-a3663.firebaseapp.com",
-  databaseURL: "https://onlineacademy-a3663.firebaseio.com",
-  projectId: "onlineacademy-a3663",
-  storageBucket: "onlineacademy-a3663.appspot.com",
-  messagingSenderId: "862982743703"
+
+var config = {
+  apiKey: "AIzaSyCOedQyfRu-inNMHSkz31WE1R8ILv2DYQM",
+  authDomain: "khutba-5f97a.firebaseapp.com",
+  databaseURL: "https://khutba-5f97a.firebaseio.com/",
+  projectId: "khutba-5f97a",
+  storageBucket: "khutba-5f97a.appspot.com",
+  messagingSenderId: "952606490020"
 };
+
 const fire = firebase.initializeApp(config);
 
 
