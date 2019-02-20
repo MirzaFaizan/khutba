@@ -39,6 +39,7 @@ if ('serviceWorker' in navigator) {
 //   messagingSenderId: "862982743703"
 // };
 // const fire = firebase.initializeApp(config);
+
 const messaging = firebase.messaging();
 
 // messaging.requestPermission().then(function () {
@@ -50,8 +51,7 @@ const messaging = firebase.messaging();
 //   console.log(token)
 //   // localStorage.fcmtoken=token
 // localStorage.setItem('fcmtoken', token);
-
-
+// });
 
 
 

@@ -4,7 +4,7 @@ import fire from '../config/fire';
 // import { notiServerKey } from '../config/constants';
 
 import YouTube from 'react-youtube';
-import axios from 'axios';
+// import axios from 'axios';
 
 class Welcome extends Component {
   constructor(props) {
@@ -39,28 +39,29 @@ class Welcome extends Component {
   sendNotification = () => {
     
     const fcmtoken = localStorage.getItem('fcmtoken');
-    let notificationData = {
-      to: fcmtoken,
-      notification: {
-        title: 'Session Started',
-        body: 'Your Online Session has been Started',
-        icon: "favicon.ico",
-      }
-    }
-    axios({
+    // let notificationData = 
+    fetch({
       method: 'post',
       url: "https://fcm.googleapis.com/fcm/send",
       headers: {
         'Authorization': 'AAAA3cvFfaQ:APA91bH-weVdsidMMqiMg1KXKiR6R3NAMRUJ_w0ym1abbEJiqyFmTYF9OqrWc7fOmGPivo0jHwi4aIgk96LRot1MPa85oBZYlI9aYoBjPaLiFyJ96tjP39xAH0Hg7eegiQ4lxaUDfEhD',
         'Content-Type': 'application/json'
       },
-      data: JSON.stringify(notificationData),
-    }).then(res => {
-      //  console.log(res)
+      data: {
+        "notification": {
+          "title": "Firebase",
+          "body": "Firebase is awesome",
+          "click_action": "http://localhost:3000/",
+          "icon": "http://url-to-an-icon/icon.png"
+      },
+      "to": fcmtoken,
+      }
+    })
+    .then(res => {
+       console.log(res)
     }).catch(err => {
-      //console.log(err)
+      console.log(err)
     });
-    console.log('sending notifications')
   }
 
   signout() {
