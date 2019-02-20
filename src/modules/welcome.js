@@ -25,6 +25,7 @@ class Welcome extends Component {
     }, () => {
       var StreamRef = fire.database().ref();
       if (this.state.playing) {
+        console.log('sending notification')
         this.sendNotification();
        
         StreamRef.child('stream').set(true);
