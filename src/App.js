@@ -27,28 +27,14 @@ class App extends Component {
 
   authListener() {
     fire.auth().onAuthStateChanged((user) => {
-<<<<<<< HEAD
     
-=======
-      console.log(user)
-      fire.database().ref('users').on('value', snapshot => {
-        const usersObject = snapshot.val();
-        console.log(usersObject)
-        const usersList = Object.keys(usersObject).map(key => ({
-          ...usersObject[key],
-          uid: key,
-        }));
->>>>>>> 39b9c06e10c17886b5292d48663964b33f7fd30f
 
-        console.log(usersList)
         if (user) {
-          usersList.forEach(key => {
-            if (key.email == user.email) {
-              this.setState({ user: key });
-            }
-          });
+              this.setState({ user });
+            
+          }
           //  localStorage.setItem('user', user.uid)
-        }
+
         else {
           this.setState({ user: null });
           //  localStorage.removeItem('user')
@@ -57,7 +43,6 @@ class App extends Component {
 
       });
 
-    });
   }
   render() {
     console.log(this.state)

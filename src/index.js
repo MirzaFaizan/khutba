@@ -51,7 +51,7 @@ const messaging = firebase.messaging();
 //   // localStorage.fcmtoken=token
 // localStorage.setItem('fcmtoken', token);
 
-const messaging = firebase.messaging();
+
 
 
 

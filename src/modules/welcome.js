@@ -94,11 +94,10 @@ class Welcome extends Component {
     return (
       <div className="container">
 
-        {this.props.user && this.props.user.role == 'Admin' ?
-          <div className="card">
+<div className="card">
             <div className="header">
               Welcome
-                                        <button type="button" className="btn btn-info" onClick={this.signout} style={{ backgroundColor: '#3372d1', float: 'right' }}>SignOut</button>
+            <button type="button" className="btn btn-info" onClick={this.signout} style={{ backgroundColor: '#3372d1', float: 'right' }}>SignOut</button>
 
             </div>
             <div className="text-center text-white pt-5  bg-dark h3">
@@ -132,45 +131,7 @@ class Welcome extends Component {
             </div>
 
             <div className="card-footer  text-center text-white" style={{ backgroundColor: 'gray' }}><a href='/'>Join Now</a></div>
-          </div > :
-          <div className="card">
-            <div className="header">
-              Welcome
-                                        <button type="button" className="btn btn-info" onClick={this.signout} style={{ backgroundColor: '#3372d1', float: 'right' }}>SignOut</button>
-
-            </div>
-            <div className="text-center text-white pt-5  bg-dark h3">
-              <button
-                style={{
-                  backgroundColor: 'Transparent',
-                  backgroundRepeat: 'no-repeat',
-                  border: 'none',
-                  cursor: 'pointer',
-                  overflow: 'hidden',
-                  outline: 'none',
-                }}
-                //onClick={this.handleChange}
-
-              >
-                <i className="fa fa-power-off i " style={{ color: 'gainsboro' }} aria-hidden="true"></i> <br />
-                <p className="pb-5" style={{ color: 'gainsboro' }}> Live Streaming On
-                </p>
-              </button>
-            </div>
-            <div className="card-body">
-
-              <YouTube
-                videoId="2g811Eo7K8U"
-                opts={opts}
-              //  onReady={this._onReady}
-              />
-
-
-            </div>
-
-            <div className="card-footer  text-center text-white" style={{ backgroundColor: 'gray' }}><a href='/'>Join Now</a></div>
-          </div >
-        }
+          </div > 
       </div >
     );
   }
