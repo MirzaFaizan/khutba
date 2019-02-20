@@ -51,7 +51,7 @@ class Welcome extends Component {
       method: 'post',
       url: "https://fcm.googleapis.com/fcm/send",
       headers: {
-        Authorization: 'AAAA3cvFfaQ:APA91bH-weVdsidMMqiMg1KXKiR6R3NAMRUJ_w0ym1abbEJiqyFmTYF9OqrWc7fOmGPivo0jHwi4aIgk96LRot1MPa85oBZYlI9aYoBjPaLiFyJ96tjP39xAH0Hg7eegiQ4lxaUDfEhD',
+        'Authorization': 'AAAA3cvFfaQ:APA91bH-weVdsidMMqiMg1KXKiR6R3NAMRUJ_w0ym1abbEJiqyFmTYF9OqrWc7fOmGPivo0jHwi4aIgk96LRot1MPa85oBZYlI9aYoBjPaLiFyJ96tjP39xAH0Hg7eegiQ4lxaUDfEhD',
         'Content-Type': 'application/json'
       },
       data: JSON.stringify(notificationData),
