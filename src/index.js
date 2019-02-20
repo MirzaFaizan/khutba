@@ -30,7 +30,6 @@ if ('serviceWorker' in navigator) {
 }
 
 //serviceWorker.unregister();
-<<<<<<< HEAD
 // const config = {
 //   apiKey: "AIzaSyA94oWHLyo8QGb4QN5TbAuUGi2LqVa3rRE",
 //   authDomain: "onlineacademy-a3663.firebaseapp.com",
@@ -51,8 +50,6 @@ const messaging = firebase.messaging();
 //   console.log(token)
 //   // localStorage.fcmtoken=token
 // localStorage.setItem('fcmtoken', token);
-=======
->>>>>>> 39b9c06e10c17886b5292d48663964b33f7fd30f
 
 const messaging = firebase.messaging();
 
