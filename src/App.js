@@ -55,20 +55,22 @@ class App extends Component {
           />
           : <Route exact path="/welcome" component={Login} />}
 
-        {this.state.user ?
+        {/* {this.state.user ?
           <Route exact path="/login" component={Welcome} />
-          : <Route exact path="/login" component={Login} />}
+          : <Route exact path="/login" component={Login} />} */}
+          <Route exact path="/login" component={Login}/>
+          <Route exact path="/" component={Login}/>
 
         {this.state.user ?
           <Route exact path="/signup" component={Welcome} />
           : <Route exact path="/signup" component={Signup} />}
 
-        {this.state.user ?
+        {/* {this.state.user ?
           <Route exact path="/" component={Welcome} />
           :
           <Route exact path="/" component={Login} />
 
-        }
+        } */}
         {
           this.state.user!= null  && this.state.user.uid === '9EDyWWsBzEgToEbFu2ug0NVcidp2' ? <Route exact path='/home' component={Welcome}/>
           : <Route exact path = '/home' component={Start}/>

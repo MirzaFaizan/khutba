@@ -23,7 +23,7 @@ class Signup extends Component {
 
     login(e) {
         //console.log(e)
-        this.props.history.push("/login")
+        this.props.history.push("/home")
 
     }
 

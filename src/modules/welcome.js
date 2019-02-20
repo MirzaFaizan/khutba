@@ -70,7 +70,8 @@ class Welcome extends Component {
       .then(() => {
         var StreamRef = fire.database().ref();
         StreamRef.child('stream').set(false);
-        this.props.history.push("/login")
+        console.log('sign out successful')
+        this.props.history.push("/")
 
         // dispatch({ type: types.RESET_PHONEVERIFY_FLAG })
       })
