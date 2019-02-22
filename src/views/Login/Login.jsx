@@ -6,6 +6,8 @@ import Button from '@material-ui/core/Button';
 
 import { withStyles } from '@material-ui/core/styles';
 
+import firebase from '../../firebase/firebase.js';
+
 
 import Card from '@material-ui/core/Card';
 
@@ -43,32 +45,22 @@ class Login extends React.Component{
 
 
     signInHandle = () => {
-       
-        if(this.state.email==='admin@admin.com' && this.state.password==="123456"){
-            this.props.history.push('/home');
-            this.setState({
-                error:false
-            })
-        }
-        else if(this.state.email==='user@user.com' && this.state.password==="123456"){
-            this.props.history.push('/userhome');
-            this.setState({
-                error:false
-            })
-        }
-        else{
-            this.setState({
-                email:'',
-                password:'',
-                error:true
-            })
-        }
+        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
+            if(u.user.uid && u.user.uid==='9EDyWWsBzEgToEbFu2ug0NVcidp2'){
+                this.props.history.push('/home')
+            }
+            else{
+                this.props.history.push('/userhome')
+            }
+        }).catch((error) => {
+           console.log(error);
+           alert(error)
+        });
     }
 
-    signUpHandle = () => {
-       
-   this.props.history.push('/signup') 
-}
+    signUpHandle = () => {  
+    this.props.history.push('/signup') 
+    }
 
     render() {
 
@@ -113,7 +105,7 @@ class Login extends React.Component{
                     />
                 </Grid>
                 <Grid item xs={12}>
-                <Grid container spacing={4} direction="row" style={{paddingTop:'5%'}}>
+                <Grid container spacing={8} direction="row" style={{paddingTop:'5%'}}>
                     <Grid item xs={6}>
                     <Button variant="contained"  color="primary" onClick={()=>this.signInHandle()}>
                             Sign In

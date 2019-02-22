@@ -15,15 +15,19 @@ const customHistory = createBrowserHistory();
 
 
 
-const CustomRoutes = () => (
-    <Router history={customHistory}>
-        <div>
-            <Route exact path='/' component={Login}/>
-            <Route exact path='/home' component={AdminScreen}/>
-            <Route exact path='/userhome' component={ClientScreen}/>
-            <Route exact path='/signup' component={SignUp}/>
-        </div>
-    </Router>
-    )
+class CustomRoutes extends React.Component {
+    render () {
+        return (
+            <Router history={customHistory}>
+            <div>
+                <Route exact path='/' component={Login}/>
+                <Route exact path='/home' component={AdminScreen}/>
+                <Route exact path='/userhome' component={ClientScreen}/>
+                <Route exact path='/signup' component={SignUp}/>
+            </div>
+        </Router>
+        )
+    }
+}
     
 export default CustomRoutes;

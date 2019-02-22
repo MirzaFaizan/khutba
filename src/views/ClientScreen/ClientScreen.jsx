@@ -1,5 +1,5 @@
 import React from 'react';
-import AppBar from '../AppBar/AppBar.jsx';
+import AppBar from '../AppBar/AppBarClient.jsx';
 import Grid from '@material-ui/core/Grid';
 // import YoutubeLive from 'youtube-live-react';
 import { Typography } from '@material-ui/core';
@@ -11,7 +11,7 @@ class ClientScreen extends React.Component{
         super(props)
 
         this.state={
-            streamAvailable :true
+            streamAvailable :false
         }
     }
     render() {
@@ -36,7 +36,7 @@ class ClientScreen extends React.Component{
                     iframeWidth={400}
                     iframeHeight={300}
                     maxResults={50}
-                    youtubeChannelId='UCqLGw6DbXL8NaiM3p97TA6A '
+                    youtubeChannelId='UC-obfu2QxOc0p3EUOIKhXJw'
                     googleApiKey='{YOUR_GOOGLE_API_KEY}'/> */}
                     <div style={{paddingLeft:'30%',paddingRight:'25%'}}>
                     <YouTube

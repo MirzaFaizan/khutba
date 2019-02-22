@@ -9,6 +9,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 import Card from '@material-ui/core/Card';
 
+import firebase from '../../firebase/firebase.js';
+
 const styles = theme => ({
     root: {
       ...theme.mixins.gutters(),
@@ -27,6 +29,10 @@ class Login extends React.Component{
             lastName:'',
             email:'',
             password:'',
+            confirmPassword:'',
+            error:false,
+            confirmError:false,
+            emailError:false
         }
     }
 
@@ -39,6 +45,12 @@ class Login extends React.Component{
     handlePassword = e => {
         this.setState({
             password:e.target.value
+        })
+    }
+
+    handleConfirmPassword = e => {
+        this.setState({
+            confirmPassword:e.target.value
         })
     }
 
@@ -58,7 +70,43 @@ class Login extends React.Component{
 
 
     signUpHandle = () => {
-}
+        if(this.state.password === this.state.confirmPassword){
+            firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
+                console.log(u)
+            }).then((u) => {
+            alert('Sign Up Successful!')
+             this.props.history.push("/userhome")
+            })
+                .catch((error) => {
+                   console.log(error)
+                    if (error.code === "auth/email-already-in-use")
+                    {
+                        alert('Email Already In Use')
+                        this.setState({
+                            // firstName:'',
+                            // lastName:'',
+                            email:'',
+                            password:'',
+                            confirmPassword:'',
+                            emailError:true,
+                            error:false,
+                            confirmError:false
+                        })
+                    }
+    
+            })
+        }
+        else{
+            this.setState({
+                password:'',
+                confirmPassword:'',
+                confirmError:true,
+                error:true,
+
+            })
+        }
+        
+    }
 
     render() {
 
@@ -109,7 +157,7 @@ class Login extends React.Component{
                     variant="outlined"
                     fullWidth={true}
                     onChange={e=>this.handleEmail(e)}
-                    error={this.state.error}
+                    error={this.state.emailError}
                     />
                 </Grid>
                 <Grid item xs={12}>
@@ -127,7 +175,21 @@ class Login extends React.Component{
                     />
                 </Grid>
                 <Grid item xs={12}>
-                <Grid container spacing={4} direction="row" style={{paddingTop:'5%'}}>
+                    <TextField
+                    id="outlined-password-input"
+                    label="Confirm Password"
+                    type="password"
+                    name="Confirm Password"
+                    value={this.state.confirmPassword}
+                    margin="dense"
+                    variant="outlined"
+                    fullWidth={true}
+                    onChange={e=>this.handleConfirmPassword(e)}
+                    error={this.state.confirmError}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                <Grid container spacing={8} direction="row" style={{paddingTop:'5%'}}>
                     <Grid item xs={6}>
                     <Button variant="contained"  color="primary" onClick={()=>this.props.history.push('/')}>
                             Sign In

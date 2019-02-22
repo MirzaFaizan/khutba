@@ -61,16 +61,16 @@ class Signup extends Component {
 
         fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
         }).then((u) => {
-         //   console.log(u)
-            this.props.history.push("/home")
+           console.log(u)
+            // this.props.history.push("/home")
         })
             .catch((error) => {
-             //   console.log(error)
+               console.log(error)
                 if (error.code === "auth/email-already-in-use")
                 {
-                    this.setState({
-                        signupError: "Email already In Use"
-                    })
+                    // this.setState({
+                    //     signupError: "Email already In Use"
+                    // })
                 }
 
         })

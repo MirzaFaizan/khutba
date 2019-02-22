@@ -1,5 +1,5 @@
 import React from 'react';
-import AppBar from '../AppBar/AppBar.jsx';
+import AppBar from '../AppBar/AppBarAdmin.jsx';
 import Grid from '@material-ui/core/Grid';
 import { Typography, TextField, Button } from '@material-ui/core';
 import PlayArrow from '@material-ui/icons/PlayArrow';

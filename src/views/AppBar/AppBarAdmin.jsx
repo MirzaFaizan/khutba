@@ -6,6 +6,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
+import firebase from '../../firebase/firebase.js';
+
 const styles = {
   root: {
     flexGrow: 1,
@@ -22,7 +24,18 @@ const styles = {
 class ButtonAppBar extends React.Component{
 
 logout = () => {
-    this.props.history.push('/')
+    firebase.auth()
+    .signOut()
+    .then(() => {
+    //   var StreamRef = fire.database().ref();
+    //   StreamRef.child('stream').set(false);
+      console.log('sign out successful')
+      this.props.history.push("/")
+
+      // dispatch({ type: types.RESET_PHONEVERIFY_FLAG })
+    })
+    .catch(err => console.log("sign out failure"));
+    // this.props.history.push('/')
 }
 render() {
   const { classes } = this.props;
