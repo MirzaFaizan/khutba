@@ -30,6 +30,9 @@ logout = () => {
     //   var StreamRef = fire.database().ref();
     //   StreamRef.child('stream').set(false);
       console.log('sign out successful')
+      var StreamRef = firebase.database().ref();
+      StreamRef.child('stream').set(false);
+      StreamRef.child('noId').set('noid');
       this.props.history.push("/")
 
       // dispatch({ type: types.RESET_PHONEVERIFY_FLAG })

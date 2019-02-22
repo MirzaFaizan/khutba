@@ -6,6 +6,7 @@ import PlayArrow from '@material-ui/icons/PlayArrow';
 import Stop from '@material-ui/icons/Stop';
 import YouTube from 'react-youtube';
 
+import firebase from '../../firebase/firebase.js';
 class AdminScreen extends React.Component{
 
     constructor(props){
@@ -23,16 +24,29 @@ class AdminScreen extends React.Component{
     }
 
     startStream = () => {
-        this.setState({
+        var StreamRef = firebase.database().ref();
+        if (this.state.stream===false) {
+          console.log('sending notification')         
+          StreamRef.child('stream').set(true);
+          StreamRef.child('videoId').set(this.state.videoId);
+          this.setState({
             stream:true
         })
-    }
+        }
+      } 
+
 
     stopStream = () => {
-        this.setState({
+        var StreamRef = firebase.database().ref();
+        if(this.state.stream===true){
+            console.log('else')
+          StreamRef.child('stream').set(false);
+          StreamRef.child('videoId').set('noid');
+          this.setState({
             stream:false,
             videoId:''
         })
+        } 
     }
     render() {
         const opts = {
