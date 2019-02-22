@@ -12,7 +12,7 @@ class AdminScreen extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            videoId:'',
+            videoId:'noid',
             stream:false,
         }
     }
@@ -25,13 +25,16 @@ class AdminScreen extends React.Component{
 
     startStream = () => {
         var StreamRef = firebase.database().ref();
-        if (this.state.stream===false) {
+        if (this.state.stream===false && this.state.videoId !=='noid') {
           console.log('sending notification')         
           StreamRef.child('stream').set(true);
           StreamRef.child('videoId').set(this.state.videoId);
           this.setState({
             stream:true
         })
+        }
+        else{
+            alert('Add ID First')
         }
       } 
 
