@@ -12,6 +12,23 @@ var config = {
 
 const fire = firebase.initializeApp(config);
 
-
-
 export default fire;
+
+navigator.serviceWorker
+    .register('firebase-messaging-sw.js')
+    .then((registration) => {
+      firebase.messaging().useServiceWorker(registration);
+    });
+
+export const askForPermissioToReceiveNotifications = async () => {
+  try {
+    const messaging = firebase.messaging();
+    await messaging.requestPermission();
+    const token = await messaging.getToken();
+    localStorage.setItem('fcmtoken',token)
+    console.log('token do usuário:', token);
+    return token;
+  } catch (error) {
+    console.error(error);
+  }
+}
