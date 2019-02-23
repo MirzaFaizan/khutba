@@ -24,30 +24,33 @@ class CustomRoutes extends React.Component {
         this.state={
             adminAuth:false,
             userAuth:false,
-            user:{}
+            user:null
         }
     }
 
     componentWillMount(){
         firebase.auth().onAuthStateChanged((user) => {
-                      if(user && user.uid==='9EDyWWsBzEgToEbFu2ug0NVcidp2')
-                       { 
-                        console.log('yes')
-                           this.setState({ user,adminAuth:true })
-                       }
-                       else if(user && user.uid !== '9EDyWWsBzEgToEbFu2ug0NVcidp2'){
-                        console.log('yes else if')
-                        this.setState({ user,userAuth:true });
-                       }
-                    //  localStorage.setItem('user', user.uid)
-                  else {
-                      console.log('else')
-                    this.setState({ user: null });
-                    //  localStorage.removeItem('user')
-                  }
-                });
+            if (user && user.uid==='9EDyWWsBzEgToEbFu2ug0NVcidp2') {
+                  this.setState({ user:user,adminAuth:true });
+                customHistory.push('/home')
+              }
+            else if(user && user.uid !=='9EDyWWsBzEgToEbFu2ug0NVcidp2')
+            {
+                this.setState({ user:user,userAuth:true });
+                customHistory.push('/userhome')
+            }
+            else {
+                console.log('else')
+                this.setState({ user: null,adminAuth:false,userAuth:false });
+            }
+          });
+    //    var admin = localStorage.getItem('adminauth')
+    //    if(admin){
+    //        customHistory.push('/home')
+    //    }
     }
     render () {
+        console.log(this.state)
         return (
             <Router history={customHistory}>
             <div>
