@@ -8,26 +8,25 @@ import App from './App';
 
 
 import { BrowserRouter as Router } from "react-router-dom";
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-
+import {askForPermissioToReceiveNotifications} from './push-notification.js'
 
 ReactDOM.render(
   <Router>
     <App />
   </Router>
   , document.getElementById('root'));
-// if ('serviceWorker' in navigator) {
-//   navigator.serviceWorker.register('./firebase-messaging-sw.js')
-//     .then(function (registration) {
-//       console.log('Registration successful, scope is:', registration);
-//       //firebase.messaging().useServiceWorker(registration);
 
-//     }).catch(function (err) {
-//       console.log('Service worker registration failed, error:', err);
-//     });
-// }
+askForPermissioToReceiveNotifications();
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./firebase-messaging-sw.js')
+    .then(function (registration) {
+      console.log('Registration successful, scope is:', registration);
+      //firebase.messaging().useServiceWorker(registration);
+
+    }).catch(function (err) {
+      console.log('Service worker registration failed, error:', err);
+    });
+}
 
 // //serviceWorker.unregister();
 // // const config = {

@@ -26,7 +26,8 @@ class AdminScreen extends React.Component{
     startStream = () => {
         var StreamRef = firebase.database().ref();
         if (this.state.stream===false && this.state.videoId !=='noid') {
-          console.log('sending notification')         
+          console.log('sending notification')
+          this.sendNotification();       
           StreamRef.child('stream').set(true);
           StreamRef.child('videoId').set(this.state.videoId);
           this.setState({
@@ -51,6 +52,33 @@ class AdminScreen extends React.Component{
         })
         } 
     }
+
+    sendNotification = () => {
+      const fcmtoken = localStorage.getItem('fcmtoken');
+      fetch({
+        method: 'post',
+        url: "https://fcm.googleapis.com/fcm/send",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'key=AAAA3cvFfaQ:APA91bH-weVdsidMMqiMg1KXKiR6R3NAMRUJ_w0ym1abbEJiqyFmTYF9OqrWc7fOmGPivo0jHwi4aIgk96LRot1MPa85oBZYlI9aYoBjPaLiFyJ96tjP39xAH0Hg7eegiQ4lxaUDfEhD',
+        },
+        data: {
+          "notification": {
+            "title": "Firebase",
+            "body": "Firebase is awesome",
+            "click_action": "http://localhost:3000/",
+            "icon": "http://url-to-an-icon/icon.png"
+        },
+        "to": fcmtoken,
+        }
+      })
+      .then(res => {
+         console.log(res)
+      }).catch(err => {
+        console.log(err)
+      });
+    }
+    
     render() {
         const opts = {
             height: '480',
