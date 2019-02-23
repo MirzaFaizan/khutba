@@ -24,6 +24,7 @@ class CustomRoutes extends React.Component {
         this.state={
             adminAuth:false,
             userAuth:false,
+            publicAuth:true,
             user:null
         }
     }
@@ -31,17 +32,16 @@ class CustomRoutes extends React.Component {
     componentWillMount(){
         firebase.auth().onAuthStateChanged((user) => {
             if (user && user.uid==='9EDyWWsBzEgToEbFu2ug0NVcidp2') {
-                  this.setState({ user:user,adminAuth:true });
+                  this.setState({ user:user,adminAuth:true,publicAuth:true });
                 customHistory.push('/home')
               }
             else if(user && user.uid !=='9EDyWWsBzEgToEbFu2ug0NVcidp2')
             {
-                this.setState({ user:user,userAuth:true });
+                this.setState({ user:user,userAuth:true,publicAuth:true });
                 customHistory.push('/userhome')
             }
             else {
-                console.log('else')
-                this.setState({ user: null,adminAuth:false,userAuth:false });
+                this.setState({ user: null,adminAuth:false,userAuth:false,publicAuth:false });
             }
           });
     //    var admin = localStorage.getItem('adminauth')
@@ -50,11 +50,10 @@ class CustomRoutes extends React.Component {
     //    }
     }
     render () {
-        console.log(this.state)
         return (
             <Router history={customHistory}>
             <div>
-                <PublicRoute exact path='/'  component={Login}/>
+                <PublicRoute exact path='/' component={Login}/>
                 <PrivateRoute exact path='/home' authed={this.state.adminAuth}  redirectTo="/" component={AdminScreen}/>
                 <PrivateRoute exact path='/userhome' authed={this.state.userAuth} redirectTo="/" component={ClientScreen}/>
                 <PublicRoute exact path='/signup' component={SignUp}/>

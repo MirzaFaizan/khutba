@@ -29,12 +29,12 @@ logout = () => {
   .then(() => {
   //   var StreamRef = fire.database().ref();
   //   StreamRef.child('stream').set(false);
-    console.log('Sign Out Successful')
+    // alert('Sign Out Successful')
     this.props.history.push("/")
 
     // dispatch({ type: types.RESET_PHONEVERIFY_FLAG })
   })
-  .catch(err => console.log("Sign Out Failure"));
+  .catch(err => alert("Sign Out Failure"));
   // this.props.history.push('/')
 }
 render() {

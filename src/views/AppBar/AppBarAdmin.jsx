@@ -29,15 +29,15 @@ logout = () => {
     .then(() => {
     //   var StreamRef = fire.database().ref();
     //   StreamRef.child('stream').set(false);
-      console.log('sign out successful')
       var StreamRef = firebase.database().ref();
       StreamRef.child('stream').set(false);
       StreamRef.child('videoId').set('noid');
+      // alert('Sign Out Successful')
       this.props.history.push("/")
 
       // dispatch({ type: types.RESET_PHONEVERIFY_FLAG })
     })
-    .catch(err => console.log("sign out failure"));
+    .catch(err => alert("Sign Out Failure"));
     // this.props.history.push('/')
 }
 render() {

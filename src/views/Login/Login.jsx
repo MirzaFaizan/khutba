@@ -31,6 +31,17 @@ class Login extends React.Component{
         }
     }
 
+    // componentWillMount(){
+    //     firebase.auth().onAuthStateChanged((user) => {
+    //         if (user.uid==='9EDyWWsBzEgToEbFu2ug0NVcidp2') {
+    //           this.props.history.push('/home')
+    //         } 
+    //         else if(user.uid!=='9EDyWWsBzEgToEbFu2ug0NVcidp2') {
+    //             this.props.history.push('/home')
+    //           } 
+    //       });
+          
+    // }
     handleEmail = e => {
         this.setState({
             email:e.target.value
