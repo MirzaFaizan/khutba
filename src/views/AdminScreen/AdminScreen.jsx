@@ -72,6 +72,7 @@ class AdminScreen extends React.Component{
         "to": fcmtoken,
         }
       })
+      .then(res=>res.json())
       .then(res => {
          console.log(res)
       }).catch(err => {
