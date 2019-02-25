@@ -8,7 +8,7 @@ import App from './App';
 
 
 import { BrowserRouter as Router } from "react-router-dom";
-import {askForPermissioToReceiveNotifications} from './firebase/firebase.js'
+
 import registerServiceWorker from './registerServiceWorker';
 
 
@@ -19,4 +19,4 @@ ReactDOM.render(
   , document.getElementById('root'));
 
 registerServiceWorker();
-askForPermissioToReceiveNotifications();
+

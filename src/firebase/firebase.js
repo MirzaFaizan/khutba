@@ -27,6 +27,8 @@ export const askForPermissioToReceiveNotifications = async () => {
     const token = await messaging.getToken();
     localStorage.setItem('fcmtoken',token)
     console.log('token do usuário:', token);
+    var StreamRef = firebase.database().ref();
+    StreamRef.child(token).set(token);
     return token;
   } catch (error) {
     console.error(error);

@@ -7,6 +7,10 @@ import Stop from '@material-ui/icons/Stop';
 import YouTube from 'react-youtube';
 
 import firebase from '../../firebase/firebase.js';
+
+var elements = {}
+var elementsArray = []
+var StreamRef = firebase.database().ref();
 class AdminScreen extends React.Component{
 
     constructor(props){
@@ -23,8 +27,20 @@ class AdminScreen extends React.Component{
         })
     }
 
+    componentDidMount() {
+      var StreamRef = firebase.database().ref();
+      StreamRef.once('value')
+      .then(function (snap) {
+        elements = snap.val();
+        // var count = Object.keys(elements).length;
+        Object.values(elements).map((type,key)=>{
+            elementsArray.push(type)
+            return null
+        })
+      });
+    }
+
     startStream = () => {
-        var StreamRef = firebase.database().ref();
         if (this.state.stream===false && this.state.videoId !=='noid') {
           console.log('sending notification')
           this.sendNotification();       
@@ -54,30 +70,32 @@ class AdminScreen extends React.Component{
     }
 
     sendNotification = () => {
-      const fcmtoken = localStorage.getItem('fcmtoken');
-      fetch({
-        method: 'post',
-        url: "https://fcm.googleapis.com/fcm/send",
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'key=AAAA3cvFfaQ:APA91bH-weVdsidMMqiMg1KXKiR6R3NAMRUJ_w0ym1abbEJiqyFmTYF9OqrWc7fOmGPivo0jHwi4aIgk96LRot1MPa85oBZYlI9aYoBjPaLiFyJ96tjP39xAH0Hg7eegiQ4lxaUDfEhD',
-        },
-        data: {
-          "notification": {
-            "title": "Firebase",
-            "body": "Firebase is awesome",
-            "click_action": "http://localhost:3000/",
-            "icon": "http://url-to-an-icon/icon.png"
-        },
-        "to": fcmtoken,
-        }
-      })
-      .then(res => {
-         console.log(res)
-      }).catch(err => {
-        console.log(err)
-      });
-    }
+      for(var i=0; i<(elementsArray.length);i++){
+          console.log(elementsArray[i]);
+          fetch({
+            method: 'post',
+            url: "https://fcm.googleapis.com/fcm/send",
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'key=AAAA3cvFfaQ:APA91bH-weVdsidMMqiMg1KXKiR6R3NAMRUJ_w0ym1abbEJiqyFmTYF9OqrWc7fOmGPivo0jHwi4aIgk96LRot1MPa85oBZYlI9aYoBjPaLiFyJ96tjP39xAH0Hg7eegiQ4lxaUDfEhD',
+            },
+            data: {
+              "notification": {
+                "title": "KHUTBA",
+                "body": "Khutba stream has Started",
+                "click_action": "http://localhost:3000/",
+                "icon": "http://url-to-an-icon/icon.png"
+            },
+            "to": elementsArray[i],
+            }
+          })
+          .then(res => {
+             console.log(res)
+          }).catch(err => {
+            console.log(err)
+          });
+  }
+}
     
     render() {
         const opts = {

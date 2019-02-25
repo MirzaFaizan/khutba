@@ -8,7 +8,6 @@ import { withStyles } from '@material-ui/core/styles';
 
 import firebase from '../../firebase/firebase.js';
 
-
 import Card from '@material-ui/core/Card';
 
 const styles = theme => ({
