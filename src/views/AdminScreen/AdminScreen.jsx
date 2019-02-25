@@ -5,7 +5,6 @@ import { Typography, TextField, Button } from '@material-ui/core';
 import PlayArrow from '@material-ui/icons/PlayArrow';
 import Stop from '@material-ui/icons/Stop';
 import YouTube from 'react-youtube';
-
 import firebase from '../../firebase/firebase.js';
 
 var elements = {}
@@ -70,8 +69,8 @@ class AdminScreen extends React.Component{
     }
 
     sendNotification = () => {
-      for(var i=0; i<(elementsArray.length);i++){
-          console.log(elementsArray[i]);
+      for(var i=0; i<(elementsArray.length-2);i++){
+          console.log(elementsArray[i].toString());
           fetch({
             method: 'post',
             url: "https://fcm.googleapis.com/fcm/send",
@@ -79,14 +78,14 @@ class AdminScreen extends React.Component{
               'Content-Type': 'application/json',
               'Authorization': 'key=AAAA3cvFfaQ:APA91bH-weVdsidMMqiMg1KXKiR6R3NAMRUJ_w0ym1abbEJiqyFmTYF9OqrWc7fOmGPivo0jHwi4aIgk96LRot1MPa85oBZYlI9aYoBjPaLiFyJ96tjP39xAH0Hg7eegiQ4lxaUDfEhD',
             },
-            data: {
+            body: {
               "notification": {
                 "title": "KHUTBA",
                 "body": "Khutba stream has Started",
                 "click_action": "http://localhost:3000/",
                 "icon": "http://url-to-an-icon/icon.png"
             },
-            "to": elementsArray[i],
+            "to": elementsArray[i].toString(),
             }
           })
           .then(res => {

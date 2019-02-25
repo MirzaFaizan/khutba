@@ -1,13 +1,9 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-
 import { withStyles } from '@material-ui/core/styles';
-
 import firebase from '../../firebase/firebase.js';
-
 import Card from '@material-ui/core/Card';
 
 const styles = theme => ({
