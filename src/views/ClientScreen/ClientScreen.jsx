@@ -41,7 +41,6 @@ class ClientScreen extends React.Component{
         });
     }
     componentDidMount() {
-        firebase.auth()
         askForPermissioToReceiveNotifications();
     }
     render() {
