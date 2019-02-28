@@ -33,6 +33,7 @@ logout = () => {
       StreamRef.child('stream').set(false);
       StreamRef.child('videoId').set('noid');
       // alert('Sign Out Successful')
+      this.stopStream();
       this.props.history.push("/")
 
       // dispatch({ type: types.RESET_PHONEVERIFY_FLAG })
@@ -40,6 +41,13 @@ logout = () => {
     .catch(err => alert("Sign Out Failure"));
     // this.props.history.push('/')
 }
+
+stopStream = () => {
+  var StreamRef = firebase.database().ref();
+    StreamRef.child('stream').set(false);
+    StreamRef.child('videoId').set('noid');
+}
+
 render() {
   const { classes } = this.props;
   return (
