@@ -117,12 +117,12 @@ class Login extends React.Component{
                 <Grid item xs={12}>
                 <Grid container spacing={8} direction="row" style={{paddingTop:'5%'}}>
                     <Grid item xs={6}>
-                    <Button variant="contained"  color="primary" onClick={()=>this.signInHandle()}>
+                    <Button variant="contained"  color="primary" style={{color:'white',backgroundColor:'darkgreen'}} onClick={()=>this.signInHandle()}>
                             Sign In
                         </Button>
                     </Grid>
                     <Grid item xs={6} style={{paddingLeft:'6%'}}>
-                    <Button variant="contained"  color="primary" onClick={()=>this.signUpHandle()}>
+                    <Button variant="contained"  color="primary" style={{color:'white',backgroundColor:'darkgreen'}} onClick={()=>this.signUpHandle()}>
                             Sign Up
                         </Button>
                     </Grid>

@@ -44,7 +44,7 @@ render() {
   const { classes } = this.props;
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" style={{backgroundColor:"darkgreen"}}>
         <Toolbar>
           <Typography variant="h6" color="inherit" className={classes.grow}>
             {this.props.name}
