@@ -5,7 +5,6 @@ import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import firebase from '../../firebase/firebase.js';
 import Card from '@material-ui/core/Card';
-
 const styles = theme => ({
     root: {
       ...theme.mixins.gutters(),
@@ -72,12 +71,17 @@ class Login extends React.Component{
 
         return (
                  <Grid container spacing={0} style={{paddingTop:'5%'}}direction="column"  alignContent="center" alignItems="center">
+
+                   
                   <Card style={{padding:'5%'}}>
                
                     <Grid container spacing={0} direction="row">
-                        <Grid item xs={12} sm={12} md={12}>
+                    <Grid item xs={12}>
+                        <img src="./IslamOnline.png" alt="Islam Online" style={{width:'200px',height:'auto'}}/>
+                    </Grid>
+                        {/* <Grid item xs={12} sm={12} md={12}>
                             <h3 style={{marginLeft:"30%"}}>Login</h3>
-                        </Grid>
+                        </Grid> */}
                     </Grid>
                 
                 

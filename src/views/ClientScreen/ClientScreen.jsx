@@ -8,6 +8,8 @@ import firebase from '../../firebase/firebase.js';
 import {askForPermissioToReceiveNotifications} from '../../firebase/firebase.js'
 
 
+
+
 class ClientScreen extends React.Component{
 
     constructor(props){
@@ -82,6 +84,7 @@ class ClientScreen extends React.Component{
 
         }
         </Grid>
+        
         </div>
         )
     }
