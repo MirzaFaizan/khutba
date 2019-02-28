@@ -43,7 +43,7 @@ class AdminScreen extends React.Component{
 
     startStream = () => {
         if (this.state.stream===false && this.state.videoId !=='noid') {
-          console.log('sending notification')
+          
           this.sendNotification();       
           StreamRef.child('stream').set(true);
           StreamRef.child('videoId').set(this.state.videoId);
@@ -71,6 +71,7 @@ class AdminScreen extends React.Component{
     }
 
     sendNotification = () => {
+<<<<<<< HEAD
       // for(var i=0; i<(elementsArray.length-2);i++){
           // console.log(elementsArray[i].toString());
           axios.post({
@@ -87,10 +88,35 @@ class AdminScreen extends React.Component{
             },
             "to": "eTq10DdTrbI:APA91bGowpXJH3Bxwj1iHhCq-425u3GToFWGaIWpoJYXfAbQj0MJHL1PQizDCfNRbUhwy7aOVpszK-4kszBZfzeozfVY8e_I-Fz8f8MiUyLSIsQZdJriaOrzBg-2YpkQ-gnVob5QaxHT",
             }
+=======
+      for(var i=0; i<(elementsArray.length-2);i++){
+          console.log(elementsArray[i].toString());
+          fetch({
+            'method': 'post',
+            'url': "https://fcm.googleapis.com/fcm/send",
+            'headers': {
+              'Content-Type': 'application/json',
+              'Authorization': 'key=AAAA3cvFfaQ:APA91bH-weVdsidMMqiMg1KXKiR6R3NAMRUJ_w0ym1abbEJiqyFmTYF9OqrWc7fOmGPivo0jHwi4aIgk96LRot1MPa85oBZYlI9aYoBjPaLiFyJ96tjP39xAH0Hg7eegiQ4lxaUDfEhD',
+            },
+            'body': JSON.stringify({
+              
+                "notification": {
+                  "title": "KHUTBA",
+                  "body": "Khutba stream has Started",
+                  "click_action": "http://localhost:3000/",
+                  "icon": "http://url-to-an-icon/icon.png"
+              },
+              "to": elementsArray[i].toString(),
+            })
+>>>>>>> e74f831d5471b5e7b6f728f334f547259db86697
           })
           .then(res => {
-             console.log(res)
-          }).catch(err => {
+             return res.json()
+          })
+          .then(res=>{
+            console.log(res);
+          })
+          .catch(err => {
             console.log(err)
           });
   // }
