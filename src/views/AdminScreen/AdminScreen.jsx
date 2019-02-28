@@ -90,8 +90,12 @@ class AdminScreen extends React.Component{
             })
           })
           .then(res => {
-             console.log(res)
-          }).catch(err => {
+             return res.json()
+          })
+          .then(res=>{
+            console.log(res);
+          })
+          .catch(err => {
             console.log(err)
           });
   }
