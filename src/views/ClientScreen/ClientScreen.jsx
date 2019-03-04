@@ -48,7 +48,7 @@ class ClientScreen extends React.Component{
     render() {
         const opts = {
             height: '300',
-            width: '300',
+            width: '480',
             playerVars: { // https://developers.google.com/youtube/player_parameters
               autoplay: 1
             }
@@ -69,7 +69,7 @@ class ClientScreen extends React.Component{
                     maxResults={50}
                     youtubeChannelId='UC-obfu2QxOc0p3EUOIKhXJw'
                     googleApiKey='AIzaSyBJi2QD2hr6JH_MRUPeU4wKg9fGyDJsiYE'/> */}
-                    <div style={{paddingLeft:'30%',paddingRight:'25%'}}>
+                    <div style={{paddingLeft:'30%',paddingRight:'25%',textAlign:'center'}}>
                     <YouTube
                     videoId={this.state.videoId}
                     opts={opts}

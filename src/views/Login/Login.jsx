@@ -76,7 +76,7 @@ class Login extends React.Component{
                   <Card style={{padding:'5%'}}>
                
                     <Grid container spacing={0} direction="row">
-                    <Grid item xs={12}>
+                    <Grid item xs={12} style={{textAlign:'center'}}>
                         <img src="./IslamOnline.png" alt="Islam Online" style={{width:'200px',height:'auto'}}/>
                     </Grid>
                         {/* <Grid item xs={12} sm={12} md={12}>
