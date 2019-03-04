@@ -56,7 +56,8 @@ class ClientScreen extends React.Component{
         return (
         <div>
         <AppBar name='User' history={this.props.history}/>
-        <Grid container spacing={24} justify="center" alignContent="center" alignItems="center">
+        <div style={{padding:12}}>
+        <Grid container spacing={24} justify="center" alignContent="center" alignItems="center" >
         {
             this.state.streamAvailable ? (
                 <div>
@@ -87,7 +88,7 @@ class ClientScreen extends React.Component{
 
         }
         </Grid>
-        
+        </div>
         </div>
         )
     }
