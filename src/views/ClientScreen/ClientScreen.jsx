@@ -62,7 +62,7 @@ class ClientScreen extends React.Component{
             this.state.streamAvailable ? (
                 <div>
                 <Grid item xs={12}>
-                    <Typography align="center" variant="display3">
+                    <Typography align="center" variant="display1">
                         Stream Available
                     </Typography>
                     </Grid>
@@ -81,7 +81,7 @@ class ClientScreen extends React.Component{
                 </div>
                
             ):  <Grid item xs={12}>
-                <Typography align="center" variant="display3">
+                <Typography align="center" variant="display1">
                     Stream Not Available
                 </Typography>
                 </Grid>
