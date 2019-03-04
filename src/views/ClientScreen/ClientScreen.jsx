@@ -47,8 +47,8 @@ class ClientScreen extends React.Component{
     }
     render() {
         const opts = {
-            height: '300',
-            width: '480',
+            height: '480',
+            width: '300',
             playerVars: { // https://developers.google.com/youtube/player_parameters
               autoplay: 1
             }
