@@ -59,23 +59,26 @@ class ClientScreen extends React.Component{
         <Grid container spacing={0}>
         {
             this.state.streamAvailable ? (
+                <div>
                 <Grid item xs={12}>
                     <Typography align="center" variant="display3">
                         Stream Available
                     </Typography>
+                    </Grid>
                     {/* <YoutubeLive
                     iframeWidth={400}
                     iframeHeight={300}
                     maxResults={50}
                     youtubeChannelId='UC-obfu2QxOc0p3EUOIKhXJw'
                     googleApiKey='AIzaSyBJi2QD2hr6JH_MRUPeU4wKg9fGyDJsiYE'/> */}
-                    <div style={{paddingLeft:'30%',paddingRight:'25%'}}>
+                    <div style={{paddingTop:'10%'}}>
                     <YouTube
                     videoId={this.state.videoId}
                     opts={opts}
                     />
                     </div>
-                </Grid>
+                </div>
+               
             ):  <Grid item xs={12}>
                 <Typography align="center" variant="display3">
                     Stream Not Available
