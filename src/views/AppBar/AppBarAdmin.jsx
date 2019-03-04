@@ -11,7 +11,7 @@ import firebase from '../../firebase/firebase.js';
 const styles = {
   root: {
     flexGrow: 1,
-    minWidth:'30rem'
+    minWidth:'25rem'
   },
   grow: {
     flexGrow: 1,
