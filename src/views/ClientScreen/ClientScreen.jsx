@@ -69,7 +69,7 @@ class ClientScreen extends React.Component{
                     maxResults={50}
                     youtubeChannelId='UC-obfu2QxOc0p3EUOIKhXJw'
                     googleApiKey='AIzaSyBJi2QD2hr6JH_MRUPeU4wKg9fGyDJsiYE'/> */}
-                    <div style={{paddingLeft:'30%',paddingRight:'25%',textAlign:'center'}}>
+                    <div style={{paddingLeft:'30%',paddingRight:'25%'}}>
                     <YouTube
                     videoId={this.state.videoId}
                     opts={opts}
